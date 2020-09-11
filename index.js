@@ -21,6 +21,12 @@ createAutoComplete({
   
     `;
   },
+  onOptionSelect(movie) {
+    onMovieSelect(movie);
+  },
+  inputValue(movie) {
+    return movie.Title;
+  },
 });
 
 const onMovieSelect = async (movie) => {
