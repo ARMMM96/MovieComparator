@@ -44,7 +44,12 @@ const onInput = async (e) => {
       <h5>${movie.Title} </h5>
     `;
     resultsWrapper.appendChild(movieItem);
-    console.log(movie);
   }
 };
 input.addEventListener('input', debounce(onInput, 500));
+
+document.addEventListener('click', (e) => {
+  if (!root.contains(event.target)) {
+    dropdown.classList.remove('is-active');
+  }
+});
