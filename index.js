@@ -29,7 +29,7 @@ createAutoComplete({
   root: document.querySelector('#left-autocomplete'),
   onOptionSelect(movie) {
     document.querySelector('.tutorial').classList.add('is-hidden');
-    onMovieSelect(movie, document.querySelector('.left-summary'));
+    onMovieSelect(movie, document.querySelector('.left-summary'), 'left');
   },
 });
 createAutoComplete({
@@ -37,19 +37,28 @@ createAutoComplete({
   root: document.querySelector('#right-autocomplete'),
   onOptionSelect(movie) {
     document.querySelector('.tutorial').classList.add('is-hidden');
-    onMovieSelect(movie, document.querySelector('.right-summary'));
+    onMovieSelect(movie, document.querySelector('.right-summary'), 'right');
   },
 });
 
-const onMovieSelect = async (movie, summaryElement) => {
+let leftMovie, rightMovie;
+const onMovieSelect = async (movie, summaryElement, side) => {
   const response = await axios.get('http://www.omdbapi.com/', {
     params: {
       apikey: 'fec063bf',
       i: movie.imdbID,
     },
   });
-  console.log(response.data);
   summaryElement.innerHTML = movieTemplate(response.data);
+  side === 'left' ? (leftMovie = response.data) : (rightMovie = response.data);
+
+  if (leftMovie && rightMovie) {
+    runCompersion();
+  }
+};
+
+const runCompersion = () => {
+  console.log('Time for compoersion');
 };
 
 const movieTemplate = (movieDetail) => {
