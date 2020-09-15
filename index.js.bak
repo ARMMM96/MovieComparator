@@ -53,30 +53,20 @@ const onMovieSelect = async (movie, summaryElement, side) => {
   side === 'left' ? (leftMovie = response.data) : (rightMovie = response.data);
 
   if (leftMovie && rightMovie) {
-    runComparison();
+    runCompersion();
   }
 };
 
-const runComparison = () => {
-  const leftSideStats = document.querySelectorAll(
-    '#left-summary .notification'
-  );
+const runCompersion = () => {
+  const leftSideStats = document.querySelectorAll('#left-summary .notifaction');
   const rightSideStats = document.querySelectorAll(
-    '#right-summary .notification'
+    '#right-summary .notifaction'
   );
-  console.log(leftSideStats);
-  leftSideStats.forEach((leftStat, index) => {
-    const rightStat = rightSideStats[index];
-    const leftSideValue = leftStat.dataset.value;
-    const rightSideValue = rightStat.dataset.value;
 
-    if (rightSideValue > leftSideValue) {
-      leftStat.classList.remove('is-primary');
-      leftStat.classList.add('is-warning');
-    } else {
-      rightStat.classList.remove('is-primary');
-      rightStat.classList.add('is-warning');
-    }
+  leftSideStats.forEach((leftStat, index) => {
+    console.log('fire?');
+    // const rightStat = rightSideStats[index];
+    // console.log(leftStat, rightStat);
   });
 };
 
